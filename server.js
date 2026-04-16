@@ -72,13 +72,17 @@ mongoose
 // Use JSON middleware
 app.use(express.json());
 
-// Enable CORS - allow localhost and any local network IP (for mobile testing)
+// Enable CORS - allow localhost, local network IPs, and production frontend
 app.use(cors({
   origin: function(origin, callback) {
     // Allow requests with no origin (mobile apps, curl, etc.)
     if (!origin) return callback(null, true);
     // Allow localhost and any local IP (192.168.x.x, 10.x.x.x, 172.x.x.x)
     if (origin.match(/^http:\/\/(localhost|127\.0\.0\.1|192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(1[6-9]|2\d|3[01])\.\d+\.\d+):\d+$/)) {
+      return callback(null, true);
+    }
+    // Allow production frontend
+    if (origin === 'https://event-app-bay-tau.vercel.app') {
       return callback(null, true);
     }
     callback(new Error('Not allowed by CORS'));
