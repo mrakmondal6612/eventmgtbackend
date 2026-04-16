@@ -16,8 +16,6 @@ dist-ssr
 node_modules/
 client/build/
 server/node_modules/
-.env
-.vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
@@ -26,3 +24,4 @@ server/node_modules/
 *.njsproj
 *.sln
 *.sw?
+config.bat
